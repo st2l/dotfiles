@@ -1,0 +1,49 @@
+# ----------------------------
+# Neovim / Lazy.nvim
+# ----------------------------
+nvim/.config/nvim/lazy-lock.json
+nvim/.config/nvim/lazyvim.json
+
+# Neovim runtime (НЕ копируем в репо)
+nvim/.local/
+nvim/.cache/
+nvim/.state/
+nvim/.config/nvim/plugin/packer_compiled.lua
+
+# ----------------------------
+# Zsh
+# ----------------------------
+# История и кэш
+zsh/.zsh_history
+zsh/.config/zsh/.zcompdump*
+zsh/.config/zsh/.zsh_sessions
+zsh/.config/zsh/.cache/
+
+# Oh-My-Zsh — если вдруг появится
+zsh/.oh-my-zsh/
+
+# ----------------------------
+# Tmux
+# ----------------------------
+tmux/.tmux.conf.local
+tmux/.tmux/plugins/
+
+# ----------------------------
+# General OS garbage
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Backups, temporary
+# ----------------------------
+*~
+*.swp
+*.swo
+*.bak
+
+# ----------------------------
+# Stow backup files (иногда создаёт)
+# ----------------------------
+*.orig
+
