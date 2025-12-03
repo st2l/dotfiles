@@ -141,6 +141,7 @@ alias k="kubectl"
 alias stegoanal="docker run -it --rm -p 127.0.0.1:6901:6901 -v `pwd`:/data dominicbreuker/stego-toolkit /bin/bash"
 alias jira-parser="/Users/sadolskii/Documents/mts/jira_parsers/.venv/bin/python /Users/sadolskii/Documents/mts/jira_parsers/main.py"
 
+alias genpyright="python $HOME/dotfiles/zsh/generate_pyright.py"
 alias noproxy='unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY all_proxy NO_PROXY no_proxy'
 alias ppright='echo "{ \"venvPath\": \".\", \"venv\": \".venv\" }" >> pyrightconfig.json'
 
