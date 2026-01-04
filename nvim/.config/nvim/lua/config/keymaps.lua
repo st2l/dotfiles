@@ -13,6 +13,8 @@ end
 
 map("n", "<leader>t", toggle_floating_term, { desc = "Floating terminal (persistent)" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
+map("i", "jj", "<Esc>", { desc = "Quick escape to normal mode" })
+map("t", "jj", "<C-\\><C-n>", { desc = "Quick exit to terminal-normal mode" })
 
 map("n", "<leader>e", function()
   require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
