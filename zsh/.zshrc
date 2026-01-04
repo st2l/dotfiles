@@ -144,6 +144,7 @@ alias jira-parser="/Users/sadolskii/Documents/mts/jira_parsers/.venv/bin/python 
 alias genpyright="python $HOME/dotfiles/zsh/generate_pyright.py"
 alias noproxy='unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY all_proxy NO_PROXY no_proxy'
 alias ppright='echo "{ \"venvPath\": \".\", \"venv\": \".venv\" }" >> pyrightconfig.json'
+alias pwninit='pwninit --template-path ~/dotfiles/pwninit/template.py --template-bin-name exe'
 
 alias LSBStego="/Users/sadolskii/Documents/ctf/tools/LSB-Steganography/.venv/bin/python /Users/sadolskii/Documents/ctf/tools/LSB-Steganography/LSBSteg.py"
 
