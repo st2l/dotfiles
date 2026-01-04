@@ -3,10 +3,16 @@
 -- Add any additional keymaps here
 
 local map = LazyVim.safe_keymap_set
+local floating_term = require("features.floating_term")
 
-map("n", "<leader>t", function()
-  Snacks.terminal()
-end, { desc = "Terminal (cwd)" })
+floating_term.setup()
+
+local function toggle_floating_term()
+  floating_term.toggle()
+end
+
+map("n", "<leader>t", toggle_floating_term, { desc = "Floating terminal (persistent)" })
+map("t", "<Esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 
 map("n", "<leader>e", function()
   require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })

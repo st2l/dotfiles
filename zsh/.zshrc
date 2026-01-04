@@ -182,3 +182,4 @@ export all_proxy="socks5://127.0.0.1:12334"
 export PATH="/opt/homebrew/bin/":$PATH
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+export PATH="$PATH:$(go env GOPATH)/bin"

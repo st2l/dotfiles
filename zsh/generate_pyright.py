@@ -26,7 +26,7 @@ config = {
     "reportMissingTypeStubs": False,
 }
 
-with open("pyrightconfig.json", "w") as f:
+with open("./pyrightconfig.json", "w") as f:
     json.dump(config, f, indent=2)
 
 print("Generated pyrightconfig.json")
