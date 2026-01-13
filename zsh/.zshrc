@@ -142,7 +142,6 @@ alias stegoanal="docker run -it --rm -p 127.0.0.1:6901:6901 -v `pwd`:/data domin
 alias jira-parser="/Users/sadolskii/Documents/mts/jira_parsers/.venv/bin/python /Users/sadolskii/Documents/mts/jira_parsers/main.py"
 
 alias genpyright="python $HOME/dotfiles/zsh/generate_pyright.py"
-alias noproxy='unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY all_proxy NO_PROXY no_proxy'
 alias ppright='echo "{ \"venvPath\": \".\", \"venv\": \".venv\" }" >> pyrightconfig.json'
 alias pwninit='pwninit --template-path ~/dotfiles/pwninit/template.py --template-bin-name exe'
 
@@ -154,6 +153,26 @@ alias k8s-conf="code /Users/sadolskii/Documents/mts/sec-scan-k8s-util/config.jso
 alias kube-hunter="/Users/sadolskii/Documents/mts/k8s/kube-hunter/.venv/bin/python3 /Users/sadolskii/Documents/mts/k8s/kube-hunter/kube-hunter.py"
 alias rs-dml='/Users/sadolskii/Documents/tools/FTLRustDemangler/target/release/rs-dml'
 clear
+
+# proxy helpers
+_DOTFILES_PROXY_URL="socks5://127.0.0.1:12334"
+
+proxy() {
+  export http_proxy="$_DOTFILES_PROXY_URL"
+  export https_proxy="$_DOTFILES_PROXY_URL"
+  export all_proxy="$_DOTFILES_PROXY_URL"
+  export HTTP_PROXY="$_DOTFILES_PROXY_URL"
+  export HTTPS_PROXY="$_DOTFILES_PROXY_URL"
+  export ALL_PROXY="$_DOTFILES_PROXY_URL"
+  echo "Proxy mode enabled -> $_DOTFILES_PROXY_URL"
+}
+
+noproxy() {
+  unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY NO_PROXY no_proxy
+  echo "Proxy mode disabled"
+}
+
+noproxy
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -174,10 +193,6 @@ unset __conda_setup
 export VIRTUAL_ENV_DISABLE_PROMPT=0
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
-export http_proxy="socks5://127.0.0.1:12334"
-export https_proxy="socks5://127.0.0.1:12334"
-export all_proxy="socks5://127.0.0.1:12334"
 
 
 export PATH="/opt/homebrew/bin/":$PATH
