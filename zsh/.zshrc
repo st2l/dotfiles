@@ -7,7 +7,6 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -120,41 +119,9 @@ source ~/.p10k.zsh
 . "$HOME/.local/bin/env"
 
 
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
-ssh-add ~/.ssh/mws_gitlab
-ssh-add ~/.ssh/ubuntu-emulation
-ssh-add ~/.ssh/debian-emulation
-ssh-add ~/.ssh/github_st2l
-ssh-add ~/.ssh/adinit
-
-
-
-
-export KUBECONFIG=/Users/sadolskii/Documents/mts/kubeconfig/config
-export JAVA_HOME=$(/usr/libexec/java_home -v 22.0.2)
-
-
-alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo /Users/sadolskii/Documents/mts/multipassport-darwin-arm64 connect'\'' && tmux attach -t vpnng'
-alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
-alias k="kubectl"
-alias stegoanal="docker run -it --rm -p 127.0.0.1:6901:6901 -v `pwd`:/data dominicbreuker/stego-toolkit /bin/bash"
-alias jira-parser="/Users/sadolskii/Documents/mts/jira_parsers/.venv/bin/python /Users/sadolskii/Documents/mts/jira_parsers/main.py"
-
-alias genpyright="python $HOME/dotfiles/zsh/generate_pyright.py"
-alias ppright='echo "{ \"venvPath\": \".\", \"venv\": \".venv\" }" >> pyrightconfig.json'
-alias pwninit='pwninit --template-path ~/dotfiles/pwninit/template.py --template-bin-name exe'
-
-alias LSBStego="/Users/sadolskii/Documents/ctf/tools/LSB-Steganography/.venv/bin/python /Users/sadolskii/Documents/ctf/tools/LSB-Steganography/LSBSteg.py"
-
-alias burp="cd /Users/sadolskii/Documents/programs/burpsuite && java -jar burploader.jar"
-alias k8s-scan="python /Users/sadolskii/Documents/mts/sec-scan-k8s-util/k8s-analyzer.py --config-file /Users/sadolskii/Documents/mts/sec-scan-k8s-util/config.json"
-alias k8s-conf="code /Users/sadolskii/Documents/mts/sec-scan-k8s-util/config.json"
-alias kube-hunter="/Users/sadolskii/Documents/mts/k8s/kube-hunter/.venv/bin/python3 /Users/sadolskii/Documents/mts/k8s/kube-hunter/kube-hunter.py"
-alias rs-dml='/Users/sadolskii/Documents/tools/FTLRustDemangler/target/release/rs-dml'
-clear
-
+# ## ## ######################################################################################################
 # proxy helpers
+# ## ## ######################################################################################################
 _DOTFILES_PROXY_URL="socks5://127.0.0.1:12334"
 
 proxy() {
@@ -174,13 +141,34 @@ noproxy() {
 
 noproxy
 
+# ## ## ######################################################################################################
+# Local exports
+# ## ## ######################################################################################################
+
+alias k="kubectl"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=0
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-
 export PATH="/opt/homebrew/bin/":$PATH
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
+
+
+# ## ## ######################################################################################################
+# SSH-adds
+# ## ## ######################################################################################################
+
+ssh-add ~/.ssh/adinit
+ssh-add ~/.ssh/debian-emulation
+ssh-add ~/.ssh/github_st2l
+ssh-add ~/.ssh/mws_gitlab
+
+# ## ## ######################################################################################################
+# custom MTS configurations
+# ## ## ######################################################################################################
+export KUBECONFIG=/Users/sadolskii/Documents/mts/kubeconfig/config
+alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo /Users/sadolskii/Documents/mts/multipassport-darwin-arm64 connect'\'' && tmux attach -t vpnng'
+alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
+
+clear
