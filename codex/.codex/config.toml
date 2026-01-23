@@ -1,0 +1,100 @@
+model = "gpt-5.2-codex"
+model_reasoning_effort = "medium"
+[mcp_servers."ida_pro_mcp"]
+command = "/Users/sadolskii/opt/miniconda3/envs/ida/bin/python3"
+args = [
+  "/Users/sadolskii/opt/miniconda3/envs/ida/lib/python3.11/site-packages/ida_pro_mcp/server.py",
+]
+timeout = 1800
+disabled = false
+
+[profiles.maslo]
+model = "gpt-5.2-codex"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+
+[profiles.maslo.sandbox_workspace_write]
+network_access = true
+
+[projects."/Users/sadolskii/Documents/ctf/"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/mctf/hardware"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/sib-ad"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/mom"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/adinit"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/mts"]
+trust_level = "untrusted"
+
+[projects."/Users/sadolskii"]
+trust_level = "untrusted"
+
+[projects."/opt/homebrew"]
+trust_level = "untrusted"
+
+[projects."/Users/sadolskii/Documents/mts/obs"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/mts/hardening_metric"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/f4rm1lk4"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/db_scanner"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/mts/tickets"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/mctf"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/ctfcup2025"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/hse/crypto/laba-1"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/mts/hh"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/ctf-challenges"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/astra-sast"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/nto"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/self-hosted/immich-app"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Documents/ctf/astra"]
+trust_level = "trusted"
+
+[projects."/Users/sadolskii/Movies/anime"]
+trust_level = "trusted"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
+"gpt-5.1-codex-mini" = "gpt-5.2-codex"
+
+[features]
+unified_exec = true
+

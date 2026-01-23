@@ -154,6 +154,14 @@ export LC_ALL="en_US.UTF-8"
 export PATH="/opt/homebrew/bin/":$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+maslo() {
+  local PROMPT_FILE="$HOME/dotfiles/data/maslo.txt"
+  local PROFILE="maslo" 
+  [[ -f "$PROMPT_FILE" ]] || { echo "No prompt file: $PROMPT_FILE" >&2; return 1; }
+
+  { cat "$PROMPT_FILE"; echo; printf "%s\n" "$*"; } | codex exec -p "$PROFILE" --skip-git-repo-check -
+}
+
 
 # ## ## ######################################################################################################
 # SSH-adds
