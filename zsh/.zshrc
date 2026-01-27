@@ -171,6 +171,7 @@ ssh-add ~/.ssh/adinit
 ssh-add ~/.ssh/debian-emulation
 ssh-add ~/.ssh/github_st2l
 ssh-add ~/.ssh/mws_gitlab
+ssh-add ~/.ssh/honor
 
 # ## ## ######################################################################################################
 # custom MTS configurations
@@ -180,3 +181,4 @@ alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -
 alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
 
 clear
+export PATH="$HOME/.local/bin:$PATH"
