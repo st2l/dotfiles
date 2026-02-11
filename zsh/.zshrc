@@ -152,6 +152,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 export PATH="/opt/homebrew/bin/":$PATH
+export PATH="/opt/homebrew/sbin/":$PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 maslo() {

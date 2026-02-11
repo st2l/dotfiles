@@ -1,5 +1,6 @@
 defaults:
   theme: catppuccin-mocha
+  terminal_font_size: 16
 
 transition:
   # how long the transition should last.
