@@ -11,6 +11,11 @@ nvim/.state/
 nvim/.config/nvim/plugin/packer_compiled.lua
 
 # ----------------------------
+# ffuf
+# ----------------------------
+ffuf/.config/ffuf/history/
+
+# ----------------------------
 # Zsh
 # ----------------------------
 # История и кэш
@@ -46,4 +51,3 @@ Thumbs.db
 # Stow backup files (иногда создаёт)
 # ----------------------------
 *.orig
-
