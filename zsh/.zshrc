@@ -113,6 +113,8 @@ fi
 
 if [[ "$OSTYPE" == darwin* ]] && command -v tmux >/dev/null 2>&1 && [[ -x "/Applications/Hiddify.app/Contents/MacOS/Hiddify" ]]; then
   alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
+else
+  alias hidd='tmux new-session -d -s hidd "sudo hiddify"'
 fi
 
 # hacking tools
