@@ -40,7 +40,11 @@ function M.setup()
       "*.yaml",
     },
     callback = function()
-      lint.try_lint()
+      if vim.bo.buftype ~= "" then
+        return
+      end
+
+      pcall(lint.try_lint, nil, { ignore_errors = true })
     end,
   })
 end

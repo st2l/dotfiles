@@ -95,6 +95,7 @@ _ssh_add_if_present() {
   ssh-add "$key_path" >/dev/null 2>&1
 }
 
+eval "$(ssh-agent -s)"
 _ssh_add_if_present "$HOME/.ssh/adinit"
 _ssh_add_if_present "$HOME/.ssh/debian-emulation"
 _ssh_add_if_present "$HOME/.ssh/github_st2l"
@@ -116,3 +117,10 @@ fi
 
 # hacking tools
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:2.1.1'
+
+# kubernetes configurations
+export KUBECONFIG="$HOME/.kube/compute.yaml"
+
+
+# end clear
+clear
