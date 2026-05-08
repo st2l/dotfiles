@@ -53,7 +53,6 @@ setopt PROMPT_SUBST
 # Aliases.
 alias k="kubectl"
 
-<<<<<<< HEAD
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -220,4 +219,3 @@ bindkey "^[[1;5C" forward-word
 
 # end clear
 clear
->>>>>>> 800c991a9d2d1d31c24d8c209225a61c459a6733
