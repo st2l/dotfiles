@@ -185,7 +185,6 @@ if [[ -f "$HOME/Documents/mts/kubeconfig/config" ]]; then
   export KUBECONFIG="$HOME/Documents/mts/kubeconfig/config"
 fi
 
-<<<<<<< HEAD
 alias s="kitten ssh"
 
 clear
@@ -196,7 +195,7 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-=======
+
 if [[ "$OSTYPE" == darwin* ]] && command -v tmux >/dev/null 2>&1 && [[ -x "$HOME/Documents/mts/multipassport-darwin-arm64" ]]; then
   alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo "$HOME/Documents/mts/multipassport-darwin-arm64" connect'\'' && tmux attach -t vpnng'
 fi
