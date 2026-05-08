@@ -14,6 +14,7 @@ M.linters_by_ft = {
   yaml = { "yamllint" },
   ["yaml.ansible"] = { "ansible_lint", "yamllint" },
   ansible = { "ansible_lint" },
+  ["yaml.ghaction"] = { "actionlint" },
 }
 
 function M.setup()

@@ -54,7 +54,7 @@ setopt PROMPT_SUBST
 alias k="kubectl"
 
 # Proxy helpers.
-_DOTFILES_PROXY_URL="socks5://192.168.139.3:12334"
+_DOTFILES_PROXY_URL="http://192.168.139.3:10808"
 
 proxy() {
   export http_proxy="$_DOTFILES_PROXY_URL"

@@ -3,6 +3,11 @@
 # ----------------------------
 nvim/.config/nvim/lazy-lock.json
 nvim/.config/nvim/lazyvim.json
+**/ffuf/**
+**/nuclei/**
+**/ripgrep-all/**
+**/uncover/**
+
 
 # Neovim runtime (НЕ копируем в репо)
 nvim/.local/

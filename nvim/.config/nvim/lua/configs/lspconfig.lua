@@ -1,5 +1,11 @@
 require("nvchad.configs.lspconfig").defaults()
 
+vim.filetype.add({
+  pattern = {
+    [".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghaction",
+  },
+})
+
 vim.lsp.config("terraformls", {
   filetypes = { "terraform", "terraform-vars", "hcl" },
 })
@@ -43,7 +49,7 @@ vim.lsp.config("ansiblels", {
   filetypes = { "yaml", "yaml.ansible" },
   root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    local root = vim.fs.root(fname, { "ansible.cfg", ".ansible-lint", ".git" })
+    local root = vim.fs.root(fname, { "ansible.cfg", ".ansible-lint" })
       or vim.fs.dirname(fname)
     on_dir(root)
   end,
