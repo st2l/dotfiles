@@ -10,8 +10,6 @@ local options = {
     typescriptreact = { "prettierd", "prettier" },
     html = { "prettierd", "prettier" },
   },
-
-  format_on_save = false,
 }
 
 return options

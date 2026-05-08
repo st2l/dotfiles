@@ -3,12 +3,22 @@
 # ----------------------------
 nvim/.config/nvim/lazy-lock.json
 nvim/.config/nvim/lazyvim.json
+**/ffuf/**
+**/nuclei/**
+**/ripgrep-all/**
+**/uncover/**
+
 
 # Neovim runtime (НЕ копируем в репо)
 nvim/.local/
 nvim/.cache/
 nvim/.state/
 nvim/.config/nvim/plugin/packer_compiled.lua
+
+# ----------------------------
+# ffuf
+# ----------------------------
+ffuf/.config/ffuf/history/
 
 # ----------------------------
 # Zsh
@@ -46,4 +56,3 @@ Thumbs.db
 # Stow backup files (иногда создаёт)
 # ----------------------------
 *.orig
-

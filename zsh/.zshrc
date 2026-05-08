@@ -1,48 +1,59 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Powerlevel10k instant prompt. Keep this close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+emulate -L zsh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# Locale.
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# Paths.
+typeset -U path
+path=(
+  "$HOME/.local/bin"
+  "$HOME/bin"
+  /usr/local/bin
+  /usr/local/sbin
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+  $path
+)
+export PATH
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+if command -v go >/dev/null 2>&1; then
+  local_go_bin="$(go env GOPATH 2>/dev/null)/bin"
+  [[ -n "$local_go_bin" ]] && path+=("$local_go_bin")
+  export PATH
+fi
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# History.
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_IGNORE_DUPS SHARE_HISTORY APPEND_HISTORY
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# Completion and navigation defaults without oh-my-zsh dependency.
+autoload -Uz compinit bashcompinit
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
+setopt AUTO_CD INTERACTIVE_COMMENTS
 
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+# Prompt.
+if [[ -r "$HOME/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+  source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
+fi
+[[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Small shell niceties that you previously got from plugins.
+autoload -Uz colors && colors
+setopt PROMPT_SUBST
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Aliases.
+alias k="kubectl"
 
+<<<<<<< HEAD
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -122,7 +133,7 @@ source ~/.p10k.zsh
 # ## ## ######################################################################################################
 # proxy helpers
 # ## ## ######################################################################################################
-_DOTFILES_PROXY_URL="http://127.0.0.1:10808"
+_DOTFILES_PROXY_URL="http://192.168.139.3:10808"
 
 proxy() {
   export http_proxy="$_DOTFILES_PROXY_URL"
@@ -139,48 +150,43 @@ noproxy() {
   echo "Proxy mode disabled"
 }
 
-noproxy
-
-# ## ## ######################################################################################################
-# Local exports
-# ## ## ######################################################################################################
-
-alias k="kubectl"
+noproxy >/dev/null
 
 export VIRTUAL_ENV_DISABLE_PROMPT=0
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-
-export PATH="/opt/homebrew/bin/":$PATH
-export PATH="/opt/homebrew/sbin/":$PATH
-export PATH="$PATH:$(go env GOPATH)/bin"
 
 maslo() {
-  local PROMPT_FILE="$HOME/dotfiles/data/maslo.txt"
-  local PROFILE="maslo" 
-  [[ -f "$PROMPT_FILE" ]] || { echo "No prompt file: $PROMPT_FILE" >&2; return 1; }
+  local prompt_file="$HOME/dotfiles/data/maslo.txt"
+  local profile="maslo"
 
-  { cat "$PROMPT_FILE"; echo; printf "%s\n" "$*"; } | codex exec -p "$PROFILE" --skip-git-repo-check -
+  [[ -f "$prompt_file" ]] || {
+    echo "No prompt file: $prompt_file" >&2
+    return 1
+  }
+
+  { cat "$prompt_file"; echo; printf "%s\n" "$*"; } | codex exec -p "$profile" --skip-git-repo-check -
 }
 
+_ssh_add_if_present() {
+  local key_path="$1"
 
-# ## ## ######################################################################################################
-# SSH-adds
-# ## ## ######################################################################################################
+  [[ -S "$SSH_AUTH_SOCK" ]] || return 0
+  [[ -f "$key_path" ]] || return 0
+  ssh-add "$key_path" >/dev/null 2>&1
+}
 
-ssh-add ~/.ssh/adinit
-ssh-add ~/.ssh/debian-emulation
-ssh-add ~/.ssh/github_st2l
-ssh-add ~/.ssh/mws_gitlab
-ssh-add ~/.ssh/honor
+eval "$(ssh-agent -s)"
+_ssh_add_if_present "$HOME/.ssh/adinit"
+_ssh_add_if_present "$HOME/.ssh/debian-emulation"
+_ssh_add_if_present "$HOME/.ssh/github_st2l"
+_ssh_add_if_present "$HOME/.ssh/mws_gitlab"
+_ssh_add_if_present "$HOME/.ssh/honor"
 
-# ## ## ######################################################################################################
-# custom MTS configurations
-# ## ## ######################################################################################################
-export KUBECONFIG=/Users/sadolskii/Documents/mts/kubeconfig/config
-alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo /Users/sadolskii/Documents/mts/multipassport-darwin-arm64 connect'\'' && tmux attach -t vpnng'
-alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
+# Project-specific settings. Keep them only when the referenced files exist.
+if [[ -f "$HOME/Documents/mts/kubeconfig/config" ]]; then
+  export KUBECONFIG="$HOME/Documents/mts/kubeconfig/config"
+fi
 
+<<<<<<< HEAD
 alias s="kitten ssh"
 
 clear
@@ -191,3 +197,27 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+=======
+if [[ "$OSTYPE" == darwin* ]] && command -v tmux >/dev/null 2>&1 && [[ -x "$HOME/Documents/mts/multipassport-darwin-arm64" ]]; then
+  alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo "$HOME/Documents/mts/multipassport-darwin-arm64" connect'\'' && tmux attach -t vpnng'
+fi
+
+if [[ "$OSTYPE" == darwin* ]] && command -v tmux >/dev/null 2>&1 && [[ -x "/Applications/Hiddify.app/Contents/MacOS/Hiddify" ]]; then
+  alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
+else
+  alias hidd='tmux new-session -d -s hidd "sudo hiddify"'
+fi
+
+# hacking tools
+alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:2.1.1'
+
+# kubernetes configurations
+export KUBECONFIG="$HOME/.kube/compute.yaml"
+
+# bind for jump keys
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+# end clear
+clear
+>>>>>>> 800c991a9d2d1d31c24d8c209225a61c459a6733

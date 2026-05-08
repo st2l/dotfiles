@@ -61,6 +61,16 @@ return {
   },
 
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = function(_, opts)
+      opts.filters = opts.filters or {}
+      opts.filters.dotfiles = false
+      opts.filters.git_ignored = false
+      return opts
+    end,
+  },
+
+  {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
