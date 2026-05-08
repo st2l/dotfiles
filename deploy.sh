@@ -1,6 +1,5 @@
 #!/bin/bash
 
-stow data
 stow nvim zsh tmux
 stow kitty presenterm
 stow pwninit
