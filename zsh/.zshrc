@@ -122,7 +122,7 @@ source ~/.p10k.zsh
 # ## ## ######################################################################################################
 # proxy helpers
 # ## ## ######################################################################################################
-_DOTFILES_PROXY_URL="socks5://127.0.0.1:12334"
+_DOTFILES_PROXY_URL="http://127.0.0.1:10808"
 
 proxy() {
   export http_proxy="$_DOTFILES_PROXY_URL"
@@ -181,5 +181,13 @@ export KUBECONFIG=/Users/sadolskii/Documents/mts/kubeconfig/config
 alias vpnng='tmux new-session -d -s vpnng '\''env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy -u NO_PROXY -u no_proxy sudo /Users/sadolskii/Documents/mts/multipassport-darwin-arm64 connect'\'' && tmux attach -t vpnng'
 alias hidd='tmux new-session -d -s hidd "sudo /Applications/Hiddify.app/Contents/MacOS/Hiddify" && tmux attach -t hidd'
 
+alias s="kitten ssh"
+
 clear
 export PATH="$HOME/.local/bin:$PATH"
+
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin

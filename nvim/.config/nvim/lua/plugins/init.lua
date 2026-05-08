@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" },
+    event = { "BufReadPre", "BufNewFile" },
     cmd = { "ConformInfo" },
     opts = require "configs.conform",
   },
@@ -65,6 +65,20 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("configs.lint").setup()
+    end,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function(_, opts)
+      opts.filters = opts.filters or {}
+      opts.filters.dotfiles = false
+      opts.filters.git_ignored = false
+
+      opts.git = opts.git or {}
+      opts.git.ignore = false
+
+      return opts
     end,
   },
 
