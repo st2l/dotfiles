@@ -123,6 +123,9 @@ alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:2.1.1'
 # kubernetes configurations
 export KUBECONFIG="$HOME/.kube/compute.yaml"
 
+# bind for jump keys
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 
 # end clear
 clear
